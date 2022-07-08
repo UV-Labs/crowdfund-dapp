@@ -17,7 +17,7 @@ export default function Index({AllData, HealthData, EducationData,AnimalData}) {
     <HomeWrapper className='mwrap'>
 
       {/* Filter Section */}
-      <FilterWrapper>
+      {/* <FilterWrapper>
      
         <FilterAltIcon style={{fontSize:40}} />
         <Category onClick={() => setFilter(AllData)}>All</Category>
@@ -25,7 +25,7 @@ export default function Index({AllData, HealthData, EducationData,AnimalData}) {
         <Category onClick={() => setFilter(EducationData)} >Education</Category>
         <Category onClick={() => setFilter(AnimalData)} >Animal</Category>
       
-      </FilterWrapper>
+      </FilterWrapper> */}
 
       {/* Cards Container */}
       <CardsWrapper className='wrap'>
@@ -149,14 +149,14 @@ const HomeWrapper = styled.div`
   align-items: center;
   width: 100%;
 `
-const FilterWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 80%;
-  margin-top: 15px;
-  margin-left:480px;
+// const FilterWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   width: 80%;
+//   margin-top: 15px;
+//   margin-left:480px;
 
-`
+// `
 const Category = styled.div`
   padding: 10px 15px;
   background-color: ${(props) => props.theme.bgDiv};
