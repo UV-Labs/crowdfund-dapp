@@ -70,6 +70,13 @@ const FormRightWrapper = () => {
         <Image alt="dapp" onChange={Handler.ImageHandler} type={'file'} accept='image/*'>
         </Image>
       </FormInput>
+      <FormInput>
+            <label>Choose Date</label>
+            <Input onChange={Handler.FormHandler} value={Handler.form.requiredAmount} name="requiredDate" type={'date'} placeholder='Required Date'></Input>     
+      </FormInput>
+
+
+
       {uploadLoading == true ? <Button><TailSpin color='#fff' height={20} /></Button> :
         uploaded == false ? 
         <Button onClick={uploadFiles}>
