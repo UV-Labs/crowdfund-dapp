@@ -145,6 +145,10 @@ export default function Index({CampaignData, HealthData, EducationData,AnimalDat
             <Text >Amount</Text> 
             <Text>{e.amount} BB ETH</Text>
           </CardData>
+          <CardData>
+            <Text >Duration</Text> 
+            <Text>{e.amount}</Text>
+          </CardData>
          
          
          <Link href="/campaign">

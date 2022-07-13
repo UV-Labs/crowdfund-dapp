@@ -19,6 +19,7 @@ const Form = () => {
         story: "",
         requiredAmount: "",
         category: "education",
+        requiredDate:"13-07-2022"
     });
 
   const { newSigner, setNewSigner, newAddress, setNewAddress, connectAccount, setConnectAccount, fetchChainId, setFetchChainId } = useContext(AdminContext)

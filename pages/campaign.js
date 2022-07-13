@@ -27,11 +27,10 @@ const [fetchSigner, setFetchSigner] = useState()
 const [buttonDisabled, setButtonDisabled] = useState();
 const [canDonate, setCanDonate] = useState(true)
 const [count, setCount] = useState(0)
+const [requiredDate, setRequiredDate] = useState()
 
 
  
-
-
 const createCampaign = () => {
   if (newSigner != undefined || null) {
   //  const  address = "0x8ba1f109551bD432803012645Ac136ddd64DBA72"
@@ -96,6 +95,7 @@ const DonationDisabled = () => {
         var receivedAmountData = await contract.receivedAmount()
         const requiredAmountData =(await contract.receivedAmount()).toString()
         const ethValue = ethers.utils.formatEther(requiredAmountData);
+        //const dateData = await contract.date()
   
   
         setStory(storyData)
@@ -112,7 +112,8 @@ const DonationDisabled = () => {
         if(e.address == newAddress) {
         setTitle(e.title)
         setOwner(e.owner)
-        // setTimeStamp(e.timeStamp)
+        //setTimeStamp(e.timeStamp)
+        //setDate(e.date)
         const date = new Date(e.timeStamp * 1000).toLocaleString()
         setTimeStamp(moment(date).fromNow())
         setAmount(e.amount)
