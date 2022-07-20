@@ -26,6 +26,7 @@ const [owner, setOwner] = useState(false)
 const [timeStamp, setTimeStamp] = useState(false)
 const [amount, setAmount] = useState(false)
 const [addr, setAddr] = useState(false)
+const [deadline, setDeadline] = useState()
  
  
     async function campaignProps () {
@@ -35,9 +36,6 @@ const [addr, setAddr] = useState(false)
                 CampaignFactory.abi,
                 newSigner
               );
-
-             
-             
            
               const getAllCampaigns = camaignFactorycontract.filters.campaignCreated();
               const AllCampaigns = await camaignFactorycontract.queryFilter(getAllCampaigns);
@@ -50,24 +48,23 @@ const [addr, setAddr] = useState(false)
                 setTimeStamp(e.args.timeStamp)
                 setAmount(e.args.amount)
                 setAddr(e.args.address)
+                setDeadline((e.args.deadline).toString())
                }
-                    return {
+            const deadlineToString = (e.args.deadline).toString()
+                    return {  
                       title: e.args.title,
                       image: e.args.imgURI,
                       owner: e.args.owner,
                       timeStamp: parseInt(e.args.timestamp),
                       amount: ethers.utils.formatEther(e.args.requiredAmount),
-                      address: e.args.campaignAddress
+                      address: e.args.campaignAddress,
+                      deadline: deadlineToString
 
                     }
                   });
               setCampaignData(AllData)
               setFetchCampaign(AllData)
-              setHaveCampaign(true)
-
-
-              
-    
+              setHaveCampaign(true)   
      
     }
     campaignProps()

@@ -29,8 +29,6 @@ const FormRightWrapper = () => {
       // console.log('nullldd')
     }
 
-
-
       if(Handler.image !== null) {
           try {
               const added = await client.add(Handler.image);
@@ -64,6 +62,10 @@ const FormRightWrapper = () => {
           </RowSecondInput>
         </FormRow>
       </FormInput>
+      <FormInput>
+            <label>Deadline</label>
+            <Input onChange={Handler.FormHandler} value={Handler.form.deadline} name="deadline" type={'date'} placeholder='Required Date'></Input>
+      </FormInput>
       {/* Image */}
       <FormInput>
         <label>Select Image</label>
@@ -90,6 +92,7 @@ const FormRight = styled.div`
 
 const FormInput = styled.div`
   display:flex ;
+ 
   flex-direction:column;
   font-family:'Poppins';
   margin-top:10px ;
@@ -107,10 +110,11 @@ const Input = styled.input`
   color:${(props) => props.theme.color} ;
   margin-top:4px;
   border:none ;
+ 
   border-radius:8px ;
   outline:none;
   font-size:large;
-  width:100% ;
+  width:94% ;
 ` 
 
 const RowFirstInput = styled.div`
