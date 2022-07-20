@@ -79,6 +79,7 @@ export default function Index({CampaignData, HealthData, EducationData,AnimalDat
     }
     // console.log(connectAccount, 'wallet')
 
+    console.log("campaigns", filter)
     for (let [key, value] of Object.entries(CAMPAIGN_FACTORY_DETAILS)) {
       if (fetchChainId === null && console.log('connect to metamamsk'));
       if(fetchChainId != null){
@@ -113,9 +114,9 @@ export default function Index({CampaignData, HealthData, EducationData,AnimalDat
   return (
     <> 
     <div>
-      {(connectToWallet && networkId != 8337) && <p style={{fontFamily: 'Poppins', margin: '200px 40% -15% 40%', fontSize: '20px'}}>Connected to {networkName}. Please switch to <b>BuildBear</b></p>}
+      {(connectToWallet && networkId != CAMPAIGN_FACTORY_DETAILS.chainId) && <p style={{fontFamily: 'Poppins', margin: '200px 40% -15% 40%', fontSize: '20px'}}>Connected to {networkName}. Please switch to <b>BuildBear</b></p>}
   
-      {(connectAccount && networkId == 8337) ?
+      {(connectAccount && networkId == CAMPAIGN_FACTORY_DETAILS.chainId) ?
      <>
     <HomeWrapper className='mwrap'>
 
@@ -125,6 +126,8 @@ export default function Index({CampaignData, HealthData, EducationData,AnimalDat
       {filter === undefined && <p>No campaign is created yet! Create one with Build Bear!</p>}
 
       {filter !== undefined && filter.map((e) => {
+        const millisec = e.deadline * 1000
+        const deadlineDate = (new Date(millisec)).toLocaleString()
         return (
           <Card key={e.title}>
           <CardImg>
@@ -145,8 +148,10 @@ export default function Index({CampaignData, HealthData, EducationData,AnimalDat
             <Text >Amount</Text> 
             <Text>{e.amount} BB ETH</Text>
           </CardData>
-         
-         
+          <CardData>
+            <Text >Duration</Text> 
+            <Text>{deadlineDate}</Text>
+          </CardData>
          <Link href="/campaign">
          <Button onClick={() => stateChanger(e.address)}>
            Go to Campaign

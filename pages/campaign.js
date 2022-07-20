@@ -27,6 +27,7 @@ const [fetchSigner, setFetchSigner] = useState()
 const [buttonDisabled, setButtonDisabled] = useState();
 const [canDonate, setCanDonate] = useState(true)
 const [count, setCount] = useState(0)
+const [deadline, setDeadline] = useState()
 
 
  
@@ -54,6 +55,16 @@ const createCampaign = () => {
 
   const contract = createCampaign()
 
+ const refundAmount = async () => {
+  var ts = Math.round((new Date()).getTime() / 1000);
+  if (ts > deadline) {
+   const refund = await contract.refund()
+   await refund.wait()
+ 
+  }
+ }
+ refundAmount()
+
  const handleInput = (e) => {
   const donatevalue = e.target.value;
   setDonation(donatevalue)
@@ -73,6 +84,7 @@ const createCampaign = () => {
  }}
 
  }
+ 
 
 const DonationDisabled = () => {
   window.alert('Cannot donate to the Campaign')
@@ -112,6 +124,7 @@ const DonationDisabled = () => {
         if(e.address == newAddress) {
         setTitle(e.title)
         setOwner(e.owner)
+        setDeadline(e.deadline)
         // setTimeStamp(e.timeStamp)
         const date = new Date(e.timeStamp * 1000).toLocaleString()
         setTimeStamp(moment(date).fromNow())
